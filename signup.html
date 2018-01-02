@@ -1,0 +1,51 @@
+<div ng-show="!isLoggedIn" style="vertical-align: center;">
+	<div class="mdl-grid" style="padding:40px 0px;">
+		<div class="mdl-cell mdl-cell--12-col" style="text-align: center;">
+			<div class="mdl-grid" style="padding:0px 0px;">
+				<div class="mdl-cell mdl-cell--4-col"></div>
+				<div class="mdl-cell mdl-cell--4-col" style="text-align: center;">
+					<img class="animated bounceInDown" src="img/logo-large.png" style="width:80%;">
+					<div class="mdl-card mdl-shadow--2dp animated zoomIn" style="width:100%; min-height:auto; margin-bottom:8px;">
+						<div class="mdl-card__title">
+							<h4 class="mdl-card__title-text">Sign up for Classroom</h4>
+						</div>
+						<div class="mdl-card__supporting-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding:0px 20px; text-align: left;">
+							<form name="mySignUpForm" id="myLoginForm" action="#">
+								<div class="mdl-textfield mdl-js-textfield" style="">
+									<input class="mdl-textfield__input" type="text" name="name" id="name" ng-model="signupForm.name" required>
+									<label class="mdl-textfield__label" for="name">Name</label>
+								</div><br>
+
+								<div class="mdl-textfield mdl-js-textfield" style="">
+									<input class="mdl-textfield__input" type="text" name="email" id="email" ng-model="signupForm.email" required>
+									<label class="mdl-textfield__label" for="email">Email</label>
+								</div><br>
+								<div class="mdl-textfield mdl-js-textfield" style="">
+									<input class="mdl-textfield__input" type="password" name="password" id="password" ng-model="signupForm.password" required>
+									<label class="mdl-textfield__label" for="password">Password</label>
+								</div><br>
+								<div class="mdl-textfield mdl-js-textfield" style="">
+									<select class="mdl-textfield__input" type="text" name="gender" id="gender" ng-model="signupForm.gender" required>
+										<option value="M" >Male</option>
+										<option value="F" >Female</option>
+									</select>
+									<label class="mdl-textfield__label" for="gender">Gender</label>
+								</div>
+							</form>
+						</div>
+						<div class="mdl-card__actions mdl-card--border" style="text-align:right;">
+							<a class="mdl-button mdl-button--raised mdl-button--primary mdl-js-button mdl-js-ripple-effect" ng-click="signup();"> Signup </a>
+						</div>
+						<div class="mdl-card__menu">
+							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<i class="material-icons">person</i>
+							</button>
+						</div>
+					</div>
+					<a href="#!login">Already have an account? Login here</a>
+				</div>
+				<div class="mdl-cell mdl-cell--4-col"></div>
+			</div>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+		<link rel="stylesheet" href="css/material.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+
+	<body ng-app="myApp"  ng-controller="myCtrl">
+
+		<div class="mdl-layout mdl-js-layout" ng-class="{'mdl-layout--fixed-drawer':isLoggedIn}"  ng-cloak>
+
+			<header class="mdl-layout__header" style="background-color: #dedede;" ng-show="isLoggedIn">
+				<div class="mdl-layout__header-row">
+					<!-- Title -->
+					<span class="mdl-layout-title"><a href="#!/"><img width="200px" src="img/logo.png"></a></span>
+					<!-- Add spacer, to align navigation to the right -->
+					<div class="mdl-layout-spacer"></div>
+					<!-- Navigation -->
+					<nav class="mdl-navigation" ng-cloak>
+						<a class="mdl-navigation__link" href="#!help" style="color:black;">Help</a>
+						<a id="notifications" class="mdl-navigation__link" href="">
+							<div class="material-icons mdl-badge mdl-badge--overlap" style="color:black;" data-badge="0">account_box</div>
+						</a>
+						<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+						    for="notifications">
+						  <li class="mdl-menu__item">No Notifications</li>
+						</ul>
+						<button ng-show="!isLoggedIn" ng-click="login()" id="login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Sign In</button>
+						<button ng-show="isLoggedIn" ng-click="logout()" id="logout" style="" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Sign Out</button>					
+					</nav>
+				</div>
+			</header>
+
+			<div class="mdl-layout__drawer" style="" ng-show="isLoggedIn"  ng-cloak>
+				<header class="mdl-layout__header" style="background-color: #dedede;">
+					<div class="mdl-layout__header-row">
+						<!-- Title -->
+						<span class="mdl-layout-title" style="color: black;">Dashboard</a></span>
+					</div>
+				</header>
+				<div ng-show="isLoggedIn" style="text-align: center; margin-top: 20px;">
+					<img ng-show="user.gender=='M'" style="width:100px; height: 100px; border-radius: 50%;" ng-src="{{profilePhoto.male}}">
+					<img ng-show="user.gender=='F'" style="width:100px; height: 100px; border-radius: 50%;" ng-src="{{profilePhoto.female}}">
+				</div>
+				<span ng-show="isLoggedIn" class="mdl-layout-title" style="text-align: center; padding-left:0px;">
+					{{user.name}}
+				</span>
+				<p  ng-show="isLoggedIn" style="text-align: center;">{{user.email}}</p>
+				<p  ng-show="isLoggedIn" style="text-align: center;">Role: {{user.role}}</p>
+				<span ng-show="!isLoggedIn" class="mdl-layout-title" style="text-align: center; padding-left:0px;">
+					Offline
+				</span>
+
+				<hr>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="#!/">Home</a>
+					<a ng-show="user.role !='Admin'" class="mdl-navigation__link" href="#!courses">My Courses</a>
+					<!--a class="mdl-navigation__link" href="#!progress">My Progress</a-->
+					<a ng-show="user.role !='Admin'" class="mdl-navigation__link" href="#!payments">Payments</a>
+					<a ng-show="user.role=='Admin'" class="mdl-navigation__link" href="#!add_course">Add Course</a>
+				</nav>
+			</div>
+
+			<main id="content" class="mdl-layout__content" style="background: #e4e4e4;" ng-view>
+
+			</main>
+			
+			<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+				<div class="mdl-snackbar__text"></div>
+				<button class="mdl-snackbar__action" type="button"></button>
+			</div>
+
+			<div id="loader" class="overlay" ng-model="loader" style="display: none;">
+				<div class="overlay-inner">
+					<div class="mdl-spinner mdl-js-spinner is-active"></div>
+				</div>
+			</div>
+
+			<div id="popup" class="overlay" ng-model="popup" style="display: none;">
+				<div class="overlay-inner">
+					<div class="mdl-card mdl-shadow--2dp" style="width:auto; min-height:auto;">
+						<div class="mdl-card__title">
+							<h2 id="alert-title" class="mdl-card__title-text"></h2>
+						</div>
+						<div id="alert-body" class="mdl-card__supporting-text" style="">
+							
+						</div>
+						<div id="alert-action" class="mdl-card__actions mdl-card--border" style="text-align:right;">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/material.js"></script>
+		<script src="js/misc.js"></script>
+		<script src="js/requests.js"></script>
+		<!--script src="https://apis.google.com/js/platform.js"></script>
+		<script ng-init="handleClientLoad()" src="https://apis.google.com/js/api.js"></script-->
+		<script src="https://awwapp.com/static/widget/js/aww.min.js"></script>
+	</body>
+</html>

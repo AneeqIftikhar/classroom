@@ -1,0 +1,64 @@
+<div ng-show="isLoggedIn" ng-cloak ng-init="getUsers()">
+	<div class="mdl-grid" style="padding:0px 0px;">
+		<div class="mdl-cell mdl-cell--6-col">
+			<div class="mdl-card mdl-shadow--2dp" style="width:100%; min-height:auto; margin-bottom: 8px;">
+				<div class="mdl-card__title">
+					<h2 class="mdl-card__title-text">Add a new class</h2>
+					<!-- MDL Spinner Component -->
+				</div>
+				<div class="mdl-card__supporting-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 18px;">
+
+					<form name="addCourseForm" id="addCourseForm" action="#">
+						<div class="mdl-textfield mdl-js-textfield">
+							<label for="name">Class Title</label>
+							<input class="mdl-textfield__input" type="text" name="name" id="name" ng-model="newClass.name" required>
+						</div>
+						<br>
+						<div class="mdl-textfield mdl-js-textfield">
+							<label for="description">Short Description</label>
+							<input class="mdl-textfield__input" type="text" name="description" id="description" ng-model="newClass.description" required>
+						</div>
+						<br>
+						<div class="mdl-textfield mdl-js-textfield">
+							<select 
+								name="teacherName" 
+								ng-model="newClass.teacher"
+								class="mdl-textfield__input" 
+								value="{{newClass.teacher}}" 
+								ng-options="teach.id as teach.name for teach in newClass.teachers"
+								required>
+								<option value="">Select Teacher</option>
+							</select>
+						</div>
+						<br>
+						<div class="mdl-textfield mdl-js-textfield">
+							<select 
+								name="studentName" 
+								ng-model="newClass.student" 
+								class="mdl-textfield__input"
+								value="{{newClass.student}}" 
+								ng-options="student.id as student.name for student in newClass.students"
+								required>
+								<option value="">Select Student</option>
+							</select>
+						</div>
+						<br>
+						<div class="mdl-textfield mdl-js-textfield">
+							<label class="" for="whiteboard">Whiteboard Link</label>
+							<input class="mdl-textfield__input" type="url" name="whiteboard" id="whiteboard" ng-model="newClass.whiteboard" required>
+						</div>
+					</form>
+					
+				</div>
+				<div class="mdl-card__actions mdl-card--border" style="text-align:right;" ng-show="addCourseForm.$valid">
+					<button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" ng-click="createCourse();">	
+						Add Class 
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="mdl-cell mdl-cell--6-col">
+			
+		</div>
+	</div>
+</div>
